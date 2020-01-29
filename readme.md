@@ -7,17 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Point of Sale...
+## IT PARLOUR...
 
 This software will be user for products management, buying, selling
 
-**Developed by [IT PARLOUR](https://itparlour.com/).**
+**Developed by [Sankar Bala](https://itparlour.com/administrator).**
 
 
 
 ## Owner
 
-The owner of this software is **Sankar Bala**.
+The owner of this software is **IT PARLOUR**.
 <hr/>
  E-mail  :  [sankarbala232@gmail.com](sankarbala232@gmail.com)
  <br/>
