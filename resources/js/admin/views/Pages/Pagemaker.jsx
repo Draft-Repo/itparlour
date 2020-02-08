@@ -1,31 +1,29 @@
 import React, { Component, useState } from "react";
-import CKEditor from "./../../../ckeditor/CKEditor";
-import DatePicker, { CalendarContainer } from "react-datepicker";
+import DatePicker from "react-datepicker";
+import CKEditor from "../../../ckeditor/Ckeditor";
+
 import "./Pagemaker.scss";
 
 const DateSelector = () => {
-  const [publishDate, setPublishDate] = useState(new Date());
-  const MyContainer = ({ className, children }) => {
-    return (
-      <div style={{ position: "fixed", left: "-82px" }}>
-        <CalendarContainer className={className}>{children}</CalendarContainer>
-      </div>
-    );
-  };
+  const [publishDate, setPublishDate] = useState(null);
+
   return (
-    <DatePicker
-      selected={publishDate}
-      onChange={date => setPublishDate(date)}
-      calendarContainer={MyContainer}
-      placeholderText="Available from"
-      dateFormat="dd/MM/yyyy h:mm aa"
-      showTimeInput
-      peekNextMonth
-      showMonthDropdown
-      showYearDropdown
-      dropdownMode="select"
-      timeInputLabel="Time:"
-    />
+    <div>
+      <DatePicker
+        selected={publishDate}
+        onChange={date => setPublishDate(date)}
+        placeholderText="  Available from"
+        dateFormat="MM/dd/yyyy h:mm aa"
+        showTimeInput
+        peekNextMonth
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
+        timeInputLabel="Time:"
+        name="publishingTime"
+        id="publishingTime"
+      />
+    </div>
   );
 };
 
@@ -33,11 +31,9 @@ class Pagemaker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: "",
-      publishDate: ""
+      visibility: ""
     };
     this.visibilityChange = this.visibilityChange.bind(this);
-    this.setDateTime = this.setDateTime.bind(this);
   }
 
   visibilityChange(e) {
@@ -45,11 +41,7 @@ class Pagemaker extends Component {
       visibility: e.target.value
     });
   }
-  setDateTime() {
-    this.setState({
-      publishDate: "2013-01-08"
-    });
-  }
+
   render() {
     return (
       <div className="container">
@@ -64,12 +56,13 @@ class Pagemaker extends Component {
                 type="text"
                 className="form-control"
                 placeholder=" Type a good title 10-90 charecter is best for seo."
-                readOnly
               />
             </div>
             <p>
-              Permalink: <a target="_blank">Linkhere</a>
+              Permalink:
+              <input placeholder="/pages/test/" disabled />
             </p>
+            <CKEditor />
           </div>
 
           <div className="col-md-4" dropable="true">
@@ -138,7 +131,6 @@ class Pagemaker extends Component {
                         <DateSelector />
                       </td>
                     </tr>
-                    
                   </tbody>
                 </table>
                 <br />

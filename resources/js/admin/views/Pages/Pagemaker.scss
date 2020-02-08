@@ -77,6 +77,12 @@
         select {
           width: auto;
         }
+        .react-datepicker__triangle {
+          left: 180px;
+        }
+        .react-datepicker {
+          left: -90px;
+        }
       }
     }
   }

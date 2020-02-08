@@ -19,6 +19,7 @@
         <div id="root"></div>
     </div>
     <script src="/js/admin.js"></script>
+    <script src="https://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/ckeditor.js"></script>
 
 </body>
 
