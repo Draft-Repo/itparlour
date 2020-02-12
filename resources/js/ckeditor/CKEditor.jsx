@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import scriptLoader from "react-async-script-loader";
 import config from "./config";
 
 class CKEditor extends React.Component {
@@ -13,9 +14,12 @@ class CKEditor extends React.Component {
           .substr(0, 5)
     };
   }
-
-  componentDidMount() {
-    CKEDITOR.replace(this.state.ckeditorName, this.props.config || config);
+  UNSAFE_componentWillReceiveProps({ isScriptLoaded, isScriptLoadSucceed }) {
+    if (isScriptLoaded && !this.props.isScriptLoaded) {
+      if (isScriptLoadSucceed) {
+        CKEDITOR.replace(this.state.ckeditorName, this.props.config || config);
+      } else console.log("CKEditor script loading failed");
+    }
   }
 
   render() {
@@ -29,4 +33,7 @@ class CKEditor extends React.Component {
     );
   }
 }
-export default CKEditor;
+
+export default scriptLoader([
+  "https://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/ckeditor.js"
+])(CKEditor);

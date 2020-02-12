@@ -10,8 +10,8 @@
     <title>{{ config('app.name')}} || {{ config('app.subtitle')}}</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> -->
+    <link rel="stylesheet" type="css/text"  href="/css/app.css"/>
 </head>
 
 <body>
@@ -19,8 +19,6 @@
         <div id="root"></div>
     </div>
     <script src="/js/admin.js"></script>
-    <script src="https://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/ckeditor.js"></script>
-
 </body>
 
 </html>
