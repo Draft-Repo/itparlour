@@ -11,5 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/admin.js', 'public/js').sourceMaps();
+mix.react('resources/js/admin.js', 'public/js');
   // .sass('resources/sass/app.scss', 'public/css');

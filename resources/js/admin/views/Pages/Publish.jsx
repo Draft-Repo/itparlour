@@ -62,17 +62,7 @@ class Publish extends React.Component {
           >
             <table>
               <tbody>
-                <tr>
-                  <td>
-                    <b>Status </b>
-                  </td>
-                  <td>
-                    <select defaultValue="Publish">
-                      <option>Publish</option>
-                      <option>Draft</option>
-                    </select>
-                  </td>
-                </tr>
+                
                 <tr>
                   <td>
                     <b>Visibility </b>
@@ -112,13 +102,18 @@ class Publish extends React.Component {
             </table>
             <br />
             <div className="row">
-              <div className="col-7 text-center">
+              <div className="col-4 text-center">
                 <button type="button" className="btn btn-link text-trash">
-                  Move to trash
+                  Trash
+                </button>
+              </div>
+              <div className="col-3 text-center">
+                <button type="button" className="btn btn-warning">
+                  Draft
                 </button>
               </div>
 
-              <div className="col-5 text-center">
+              <div className="col-4 text-center">
                 <button type="button" className="btn btn-success">
                   Publish
                 </button>

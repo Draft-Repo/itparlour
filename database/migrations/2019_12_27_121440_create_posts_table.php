@@ -15,26 +15,29 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_author_id')->default(1);
+            $table->integer('author_id')->default(1);
             $table->string('category_id')->nullable();
-            $table->string('post_slug')->unique();
-            $table->string('post_guid')->unique();
+            $table->string('slug')->unique();
+            $table->string('guid')->unique(); //World wide unicque url;
             $table->string('feature_image')->nullable();
-            $table->text('post_title')->nullable();
-            $table->text('post_type');
-            $table->longText('post_content')->nullable();
-            $table->enum('post_visibility', ['public', 'private', 'protected'])->default('public');
+            $table->text('title')->nullable();
+            $table->text('type')->nullable();
+            $table->longText('raw_content')->nullable(); // Content as created;
+            $table->longText('optimized_content')->nullable(); // Content after deducting inline style for best seo;
+            $table->string('inline_style')->nullable(); // Inline styles stored here for frontend delivery;
+            $table->string('custom_style')->nullable();
+            $table->enum('visibility', ['public', 'private', 'protected'])->default('public');
             $table->string('visible_to')->nullable();
-            $table->enum('post_status', ['published', 'draft', 'pending', 'waiting'])->default('draft');
-            $table->dateTime('post_available_after')->nullable();
-            $table->string('post_password')->nullable();
+            $table->enum('status', ['published', 'draft', 'pending', 'deleted'])->default('draft');
+            $table->dateTime('available_after')->nullable();
+            $table->string('password')->nullable();
             $table->text('tags')->nullable();
             $table->boolean('comment_status')->default(1);
             $table->integer('comment_count')->default(0);
             $table->boolean('ping_status')->default(1);
             $table->string('to_ping')->nullable();
             $table->boolean('ispinged')->default(0);
-            $table->integer('post_parent_id')->nullable();
+            $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
     }

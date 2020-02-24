@@ -1,9 +1,10 @@
 const config = {
-//   uiColor: "#777777",
+  // uiColor: "#777777",
   toolbarGroups: [
     {
       name: "basicstyles",
       groups: [
+        "mode",
         "basicstyles",
         "cleanup",
         "colors",
@@ -23,11 +24,11 @@ const config = {
     { name: "insert", groups: ["insert", "links", "forms"] },
     "/",
     { name: "styles", groups: ["styles"] },
-    { name: "document", groups: ["mode", "tools"] }
+    { name: "document", groups: [ "tools"] }
   ],
 
   removeButtons:
-    "About,Save,NewPage,Preview,Print,Templates,PasteFromWord,PasteText,SelectAll,Scayt,ShowBlocks,Language"
+    "About,Save,NewPage,Preview,Print,Templates,PasteFromWord,PasteText,SelectAll,Scayt,ShowBlocks,Language,Anchor"
 };
 
 export default config;

@@ -26,7 +26,7 @@ class CKEditor extends React.Component {
     return (
       <div>
         <textarea
-          className="ckeditor"
+          className="CKEditor"
           name={this.state.ckeditorName}
         ></textarea>
       </div>
@@ -35,5 +35,5 @@ class CKEditor extends React.Component {
 }
 
 export default scriptLoader([
-  "https://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/ckeditor.js"
+  "https://cdn.ckeditor.com/4.13.1/full/ckeditor.js"
 ])(CKEditor);
