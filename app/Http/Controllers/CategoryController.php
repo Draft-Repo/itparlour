@@ -10,7 +10,26 @@ class CategoryController extends Controller
 
 {
 
+    public function  getData(){
+        $items = Category::all();
+        $tree  = [];
+    
+        foreach($items as $item){
+            $item->children = [];
+            if($item->parent_id==null){
+                array_push($tree, $item);
+            } else {  
+                $parent= $items->find($item->parent_id);
+                $parent->children=array_merge($parent->children, [$item]); 
+            }
+        }
 
+         return $tree;
+         
+        }
+
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +38,7 @@ class CategoryController extends Controller
     public function index()
     {
 
-        return DB::table('categories')->get();
+          return $this::getData(); 
         
     }
 
@@ -41,19 +60,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-   
+ 
+    
         if ($request['category'] == null) {
-            $category = DB::table('categories')->get();
-            return response()->json(['messege' => 'Category Empty', 'error' => true, 'data'=> $category]);
+            
+            return response()->json(['messege' => 'Category Empty', 'error' => true, 'data'=> $this::getData()]);
         
         }
        
-
         if (Category::where('category_name', '=', $request['category'])->exists()) {
            
-        $category = DB::table('categories')->get();
-        return response()->json(['messege' => 'Category exists', 'error' => true, 'data'=> $category]);
-       
+            return response()->json(['messege' => 'Category exists', 'error' => true, 'data'=> $this::getData()]);     
 
         } else {
 
@@ -64,7 +81,7 @@ class CategoryController extends Controller
         $category->save();
 
         $category = DB::table('categories')->get();
-        return response()->json(['messege' => 'Saved', 'error' => false, 'data'=> $category]);
+            return response()->json(['messege' => 'Saved', 'error' => false, 'data'=> $this::getData()]);
               
 
         }

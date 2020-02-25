@@ -2,7 +2,7 @@
 
 
 //  Route::get('/',  'CategoryController@index');
- Route::get('/php',  'CategoryController@php');
+ Route::get('/php',  'CategoryController@tree');
 
 
 

@@ -13,7 +13,51 @@ class Category extends React.Component {
       messege: null
     };
     this.addCategory = this.addCategory.bind(this);
-    this.testme = this.testme.bind(this);
+    this.hideMessege = this.hideMessege.bind(this);
+    this.categorySelector = this.categorySelector.bind(this);
+    this.parentCategorySelector = this.parentCategorySelector.bind(this);
+  }
+
+  categorySelector(value, index, childlabel) {
+    return (
+      <React.Fragment key={value.id}>
+        <li key={value.id}>
+          {childlabel}
+          <input type="checkbox" id={value.id} value={value.category_name} />
+          <label htmlFor={value.id}>{value.category_name}</label>
+        </li>
+
+        {value.children[0] == null
+          ? ""
+          : value.children.map((value, index) => {
+              return this.categorySelector(
+                value,
+                index,
+                <span>{childlabel}&nbsp; &nbsp; &nbsp;</span>
+              );
+            })}
+      </React.Fragment>
+    );
+  }
+
+  parentCategorySelector(value, index, childlabel) {
+    return (
+      <React.Fragment key={value.id}>
+        <option key={value.id} value={value.id}>
+          {childlabel} {value.category_name}
+        </option>
+
+        {value.children[0] == null
+          ? ""
+          : value.children.map((value, index) => {
+              return this.parentCategorySelector(
+                value,
+                index,
+                childlabel + "--"
+              );
+            })}
+      </React.Fragment>
+    );
   }
 
   async componentDidMount() {
@@ -38,10 +82,10 @@ class Category extends React.Component {
     if (this.state.error == false) {
       this.setState({ newCategory: "" });
     }
-    setTimeout(this.testme, 1500);
+    setTimeout(this.hideMessege, 1500);
   }
 
-  testme() {
+  hideMessege() {
     this.setState({ messege: null });
   }
 
@@ -67,16 +111,7 @@ class Category extends React.Component {
           >
             <ul className="category-list">
               {this.state.categories.map((value, index) => {
-                return (
-                  <li key={index}>
-                    <input
-                      type="checkbox"
-                      id={index}
-                      value={value.category_name}
-                    />
-                    <label htmlFor={index}>{value.category_name}</label>
-                  </li>
-                );
+                return this.categorySelector(value, index, "");
               })}
             </ul>
             <hr className="m-2" />
@@ -98,12 +133,9 @@ class Category extends React.Component {
                   }}
                 >
                   <option value="">--Parent Category--</option>
+
                   {this.state.categories.map((value, index) => {
-                    return (
-                      <option key={value.id} value={value.id}>
-                        {value.category_name}
-                      </option>
-                    );
+                    return this.parentCategorySelector(value, index, "");
                   })}
                 </select>
                 {this.state.messege == null ? (
