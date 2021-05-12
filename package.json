@@ -43,7 +43,7 @@
         "jquery": "^3.4.1",
         "jquery-ui": "^1.12.1",
         "jquery-ui-dist": "^1.12.1",
-        "mathjs": "^3.20.1",
+        "mathjs": "^7.5.1",
         "node-sass": "^4.13.0",
         "prop-types": "^15.7.2",
         "psl": "^1.7.0",
